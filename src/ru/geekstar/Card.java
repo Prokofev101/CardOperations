@@ -10,7 +10,7 @@ public class Card {
 
     private int countTransactions = 0;
 
-    private String[] transactions = new String[5];
+    private String[] transactions = new String[50];
 
     public float getDeposit() {
         return deposit;
@@ -55,14 +55,15 @@ public class Card {
     public void pay(float sumPay) {
         //списать сумму покупки с карты
         boolean payStatus;
+        byte errorTransaction = 0;
         do {
             payStatus = withdrawal(sumPay);
             if (payStatus) { //payStatus == true
-                String transaction = paySystem + " " + numberCard + ": " + "Оплачено " + sumPay + " Остаток на карте " + deposit;
+                String transaction = paySystem + " " + numberCard + ": " + "Покупка " + sumPay + " Остаток на карте " + deposit;
                 setTransactions(transaction);
                 //System.out.println(transaction);
-            }
-        }while (!payStatus);
+            }else errorTransaction++;
+        }while (!payStatus && errorTransaction < 3);
         /*
         todo: перевести сумму на счет магазина
          */
@@ -78,14 +79,15 @@ public class Card {
         }
         //затем списать деньги с карты
         boolean transferStatus;
+        byte errorTransaction = 0;
         do {
             transferStatus = withdrawal(sumTransfer + comission);
             if (transferStatus) {
                 String transaction = paySystem + " " + numberCard + ": " + "Переведено " + sumTransfer + "Комиссия составила " + comission + " Остаток на карте " + deposit;
                 setTransactions(transaction);
                 //System.out.println(transaction);
-            }
-        }while (!transferStatus);
+            }else errorTransaction++;
+        }while (!transferStatus && errorTransaction < 3);
         //и перевести деньги на другую карту
 
         //и перевести комиссию на счет банка
