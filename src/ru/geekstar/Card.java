@@ -92,12 +92,16 @@ public class Card {
     }
 
     private boolean withdrawal(float sum) {
-        deposit = deposit - sum;
-        if (deposit >= 0) return true;
-        else return false;
+        if (deposit >= sum) {
+            deposit = deposit - sum;
+            return true;
+        }else {
+            String transaction = paySystem + " " + numberCard + ": " + "Недостаточно средств на карте " + deposit;
+            setTransactions(transaction);
+            return false;
+        }
+
     }
-
-
 
 
 }
