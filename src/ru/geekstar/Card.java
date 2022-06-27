@@ -79,7 +79,7 @@ public class Card {
         //затем списать деньги с карты
         boolean transferStatus;
         do {
-            transferStatus = withdrawal(sumTransfer);
+            transferStatus = withdrawal(sumTransfer + comission);
             if (transferStatus) {
                 String transaction = paySystem + " " + numberCard + ": " + "Переведено " + sumTransfer + "Комиссия составила " + comission + " Остаток на карте " + deposit;
                 setTransactions(transaction);
@@ -87,6 +87,8 @@ public class Card {
             }
         }while (!transferStatus);
         //и перевести деньги на другую карту
+
+        //и перевести комиссию на счет банка
     }
 
     private boolean withdrawal(float sum) {
