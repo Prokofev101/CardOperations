@@ -8,6 +8,8 @@ public class Card {
 
     private String paySystem;
 
+    private char currency; // '₽'
+
     private int countTransactions = 0;
 
     private String[] transactions = new String[50];
@@ -34,6 +36,14 @@ public class Card {
 
     public void setPaySystem(String paySystem) {
         this.paySystem = paySystem;
+    }
+
+    public char getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(char currency) {
+        this.currency = currency;
     }
 
     public int getCountTransactions() {
@@ -83,7 +93,7 @@ public class Card {
         do {
             transferStatus = withdrawal(sumTransfer + comission);
             if (transferStatus) {
-                String transaction = paySystem + " " + numberCard + ": " + "Переведено " + sumTransfer + "Комиссия составила " + comission + " Остаток на карте " + deposit;
+                String transaction = paySystem + " " + numberCard + ": " + "Переведено " + sumTransfer + currency + "Комиссия составила " + comission + currency + " Остаток на карте " + deposit + currency;
                 setTransactions(transaction);
                 //System.out.println(transaction);
             }else errorTransaction++;
@@ -98,7 +108,7 @@ public class Card {
             deposit = deposit - sum;
             return true;
         }else {
-            String transaction = paySystem + " " + numberCard + ": " + "Недостаточно средств на карте " + deposit;
+            String transaction = paySystem + " " + numberCard + ": " + "Недостаточно средств на карте " + deposit + currency;
             setTransactions(transaction);
             return false;
         }
