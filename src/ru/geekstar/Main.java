@@ -12,7 +12,7 @@ public class Main {
         visaCard.pay(100.50f);
         visaCard.pay(250.00f);
         visaCard.transfer(100.00f);
-        visaCard.depositing(300.00f);
+        visaCard.depositing(300.00f);//ошибка при git push origin main
 
         //System.out.println("\nОперации по карте " + visaCard.getPaySystem() + " " +visaCard.getNumberCard() + ": ");
         String[] transactions = visaCard.getTransactions();
