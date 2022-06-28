@@ -103,7 +103,7 @@ public class Card {
         //и перевести комиссию на счет банка
     }
 
-    private float depositing(float sumDepositing) {
+    private void depositing(float sumDepositing) {
         //внесение денег на карту
         deposit = deposit + sumDepositing;
         String transaction = paySystem + " " + numberCard + ": " + "Внесено " + sumDepositing + currency + " Остаток на карте " + deposit + currency;
